@@ -44,7 +44,6 @@ function sumWithDefaults(a, b = 100) {
    returnFnResult(() => 'привет') вернет 'привет'
  */
 
-
 function returnFnResult(fn) {
     return fn();
 }
@@ -79,9 +78,11 @@ function returnCounter(number = 0) {
  */
 function returnArgumentsArray() {
     var result = [];
+
     for (var i = 0; i < arguments.length; i++) {
         result[i] = arguments[i];
     }
+
     return result;
 }
 
@@ -101,9 +102,10 @@ function returnArgumentsArray() {
    console.log(newSum()) выведет 6
  */
 
-
-function bindFunction(fn, ...args) {
-    return fn.bind(null, ...args)
+function bindFunction(f, ...args) {
+    return function() {
+        return f.call(this, ...args);
+    }
 }
 
 export {
