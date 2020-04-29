@@ -65,7 +65,29 @@ function reduce(array, fn, initial) {
  Пример:
    upperProps({ name: 'Сергей', lastName: 'Петров' }) вернет ['NAME', 'LASTNAME']
  */
-function upperProps(obj) {}
+function upperProps(obj) {
+    var arr = [];
+
+    for (var key in obj) {
+        if (key = key.toUpperCase()) {
+            arr.push(key);
+        }
+    }
+
+    return arr;
+}
+// function upperProps(obj) {
+//     var arr = [];
+
+//     for (var key in obj) {
+
+//         key = key.toUpperCase();
+
+//         arr.push(key);
+//     }
+
+//     return arr;
+// }
 
 /*
  Задание 5 *:
@@ -73,15 +95,48 @@ function upperProps(obj) {}
  Напишите аналог встроенного метода slice для работы с массивами
  Посмотрите как работает slice и повторите это поведение для массива, который будет передан в параметре array
  */
-function slice(array, from, to) {}
+// function slice(array, from = 0, to = array.length) {
+//     var arr = [];
 
+//     for (var i = from; i < to; i++) {
+//         arr.push(array[i])
+//     }
+
+//     return arr;
+// }
+function slice(array, from = 0, to = array.length) {
+    const res = [];
+
+    if (to < 0) {
+        to = array.length + to;
+    }
+    if (from < 0) {
+        from = array.length + from;
+    }
+
+    for (let i = from; i < to; i++) {
+        if (array[i]) {
+            res.push(array[i])
+        }
+    }
+
+    return res;
+}
 /*
  Задание 6 *:
 
  Функция принимает объект и должна вернуть Proxy для этого объекта
  Proxy должен перехватывать все попытки записи значений свойств и возводить это значение в квадрат
  */
-function createProxy(obj) {}
+function createProxy(obj) {
+    const handler = {
+        get(target, name) {
+            return target[name] ** 2;
+        }
+    }
+
+    return new Proxy(obj, handler)
+}
 
 export {
     forEach,
