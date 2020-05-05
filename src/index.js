@@ -18,7 +18,10 @@
  */
 
 function isAllTrue(array, fn) {
-    let isArr = Array.isArray(array);
+    let isArr = array instanceof Array;
+    // let isArr = array.filter;
+    // let isArr = array.constructor == Array;
+    // let isArr = Array.isArray(array);
     let result = true;
 
     if (array.length == 0 || !isArr) {
@@ -50,7 +53,8 @@ function isAllTrue(array, fn) {
     isSomeTrue([1, 2, 3, 4, 5], n => n > 20) // вернет false
   */
 function isSomeTrue(array, fn) {
-    var isArr = Array.isArray(array);
+    let isArr = array instanceof Array;
+    // var isArr = Array.isArray(array);
 
     if (array.length == 0 || !isArr) {
         throw new Error('empty array');
