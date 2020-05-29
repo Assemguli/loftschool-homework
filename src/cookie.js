@@ -107,22 +107,24 @@ function parseFilterCookie(filterValue) {
 
 function renderCookie(cookie) {
     for (let key in cookie) {
-        let row = listTable.insertRow(listTable.rows.length);
-        let cell = row.insertCell(0);
+        if (typeof(key) != "undefined" && typeof(cookie[key]) != "undefined") {
+            let row = listTable.insertRow(listTable.rows.length);
+            let cell = row.insertCell(0);
 
-        cell.innerText = key;
-        let cell2 = row.insertCell(1);
+            cell.innerText = key;
+            let cell2 = row.insertCell(1);
 
-        cell2.innerText = cookie[key];
-        let cell3 = row.insertCell(2);
-        let button = document.createElement("BUTTON");
+            cell2.innerText = cookie[key];
+            let cell3 = row.insertCell(2);
+            let button = document.createElement("BUTTON");
 
-        button.textContent = 'Удалить';
-        cell3.appendChild(button);
-        button.addEventListener('click', function() {
-            listTable.removeChild(row);
-            document.cookie = key + '=;expires=Tues, 01 Jan 1991 00:00:00 GMT;';
-        });
+            button.textContent = 'Удалить';
+            cell3.appendChild(button);
+            button.addEventListener('click', function() {
+                listTable.removeChild(row);
+                document.cookie = key + '=;expires=Tues, 01 Jan 1991 00:00:00 GMT;';
+            });
+        }
     }
 }
 
